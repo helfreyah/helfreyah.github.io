@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: 3px solid green;
+  padding: 10px;
+  color: green;
+}    
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style>
+body {font-family: Arial;}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tab button:hover {
+  background-color: #ddd;
+}
+
+.tab button.active {
+  background-color: #ccc;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+</head>
+<body style=background-color:black;>
+<div class="tab">
+<button class="tablinks" onclick="document.location='../about.html'">About</button>
+<button class="tablinks" onclick="document.location='../wininternal.html'">Windows Internals</button>
+<button class="tablinks" onclick="document.location='../reverse.html'">Reverse Engineering</button>
+<button class="tablinks" onclick="document.location='../malware.html'">Malware Development</button>
+<button class="tablinks" onclick="document.location='../threatintelligence.html'">Threat Intelligence</button>
+<button class="tablinks" onclick="document.location='../threathunting.html'">Threat Hunting</button>
+</div>
+<h1 style="text-align:center;background-color:DodgerBlue;">2-Windows System Architecture</h1>
+<img src="../src/winsysarch2.png">
+ <br> </br>
+<h2 style="color:Green;">Environment Subsystems</h2>
+<h4 style="color:Green;">Kullanıcı uygulamaları direkt olarak Windows Sistem Servislerine ulaşamaz ve bunun yerine bir veya birden fazla subsystem dll kullanır. Mesela windows uygulaması SUA(POSIX,psxdll.dll) subsystem'i kullanamaz. Windows uygulaması Windows subsystem DLLs kullanır.(Kernel32.dll,advapi32.dll,User32.dll,Gdi32.dll).</h4>
+<h2 style="color:Green;">Session Manager</h2>
+<h4 style="color:Green;">Subsystems(altsistemler) , Session Manager Subsystems (Smss.exe) proses'i tarafından başlatılır.Subsystem startup bilgileri "HKLM\SYSTEM\CurrentControlSet\Control\SessionManager\SubSystems" altında saklanır. Burada Windows ve Debug string değerleri bulunuyor. Windows , değer olarak subsystem proses'i olan (Client/Server Runtime Subsystem)Csrss.exe'i alır. Proses/Thread yönetimi yapan , WinAPI dll'leri import eden ve sistem kapanmasında GUI'ın kapatılmasını sağlar. Debug değeri ise boş çünkü WinXP'den beri gerek duyulmuyor. Optional kısmı ise SUA'nın Win10 da olmamasından dolayı boş.Fakat olsaydı Psxss.exe yazıyor olurdu yani POSIX subsystem proses.</h4>
+<h2 style="color:Green;">Wininit.exe - Windows Initialization Process</h2>
+<h4 style="color:Green;">smss.exe tarafından oluşturuluyor. "Username : NT Authority\System" , user-mode tarafında görevlerin başlatılmasını sağlar. Wininit.exe Parent process olup child process olarak altında services.exe(service control manager ya da Scm) bulunur. Lsass.exe(Local Security Authentication Subsystem Service)'ı başlatır.</h4>
+ <h2 style="color:Green;">Services.exe - Service Control Manager</h2>
+<h4 style="color:Green;">Parent prosesi wininit.exe'dir. Services.exe "svchost.exe, dllhost.exe, taskhost.exe spoolsv.exe" gibi proseslerin parent prosesidir. Servisler kayıt defterinde "SYSTEMCurrentControlSetServices" içinde tanımlanmıştır. Servisleri hafızaya yükler. Sadece bir tane services.exe prosesi çalışmalıdır.</h4>
+ <h2 style="color:Green;">Lsass.exe - Local Security Authority</h2>
+<h4 style="color:Green;">Wininit.exe'nin child prosesidir. Child prosesi olmamalıdır. Sadece bir tane lsass.exe prosesi çalışmaktadır. "Local security policy" den sorumludur bunun içinde kullanıcıların yönetimi "login,password" policies den sorumludur ve bunları security event log kayıtlarına yazar.</h4>
+ <h2 style="color:Green;">svchost.exe - Service Hosting Process</h2>
+<h4 style="color:Green;">Bir'den fazla svchost.exe çalışıyor olabilir. "Username" olarak "NT Authority\System,Local Service,Network Service" olmalıdır. Parent proesesi "services.exe". Komut satırında "svchost -k <name>" olarak çalışır. svchost.exe birden çok Windows servisini çalıştıran bir prosestir.</h4>
+ <h2 style="color:Green;">WINLOGON.exe - Windows Logon Process</h2>
+<h4 style="color:Green;">Parent prosesi yoktur. "Username NT Authority\System". Child prosesi olabilir. Kullanıcı parolası girildikten sonra doğrulama içi LSASS(lsass.exe)'e gönderilir ve Active Directory veya SAM üzerinden doğrulama yapılır.</h4>
+ <h2 style="color:Green;">explorer.exe - Windows Explorer</h2>
+ <h4 style="color:Green;">Parent prosesi yok. "Username : 'Giriş yapılan kullanıcı' ". Child prosesleri olur.Windows gezgini olarak da adlandırılabilir, açılan pencereler child proses olarak altında gözükebilir.</h4>
+</body>
+</html>
