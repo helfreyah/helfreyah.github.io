@@ -47,7 +47,7 @@ Did u ever read how to work tor network"? Do you want to be shadow  ?  VPN, Prox
 
 Because he/she creating second person. New identity , new face , new thinks , new perspectives. For what ? For CHAOS.
 
-He/She creating Chaos and he/she want to be Prophet of Chaos. Because he/she has an ideology. Ohh I remember APT groups. They are want to earn money. (????????????)
+He/She creating Chaos and he/she want to be Prophet of Chaos. Because he/she has an ideology. Ohh I remember APT groups. They want to earn money. (????????????)
 
 What you think about APT motivation ? Money, ideology, military or nationality intelligence ? I think these are just tool. You have to be scared this situation. They are always ready. Are you always ready ?
 
