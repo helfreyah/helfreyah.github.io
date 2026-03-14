@@ -10,7 +10,7 @@ Attackers can manipulate API requests and replace the object ID in the endpoint.
 
 Vulnerable code with Rust:
 
-```Rust
+```rust
 use axum::{
     Json, Router,
     extract::Path,
@@ -65,7 +65,7 @@ There isn't any check for the user authorization, so the api just gets input and
 
 **Check the object's owner and current user id**
 
-```Rust
+```rust
    let order = orders
         .into_iter()
         .find(|x| x.object_id == order_id & x.owner == user_id)
@@ -79,7 +79,7 @@ There isn't any check for the user authorization, so the api just gets input and
 **Use random identifiers**
 Mitigate enumeration risk
 
-```Rust
+```rust
 GET /api/order/664c3490-8e26-94s8
 
 use uuid::Uuid;
@@ -87,4 +87,5 @@ use uuid::Uuid;
 struct Order {
     id: Uuid,
 }
+
 ```
