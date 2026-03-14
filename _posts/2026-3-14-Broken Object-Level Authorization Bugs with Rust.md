@@ -76,8 +76,7 @@ There isn't any check for the user authorization, so the api just gets input and
 ```
 
 
-**Use random identifiers**
-Mitigate enumeration risk
+**Use random identifiers and mitigate enumeration risk**
 
 ```rust
 GET /api/order/664c3490-8e26-94s8
