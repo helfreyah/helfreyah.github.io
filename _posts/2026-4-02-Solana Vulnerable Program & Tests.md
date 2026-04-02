@@ -6,22 +6,23 @@ categories: [WEB3 Security]
 
 
 Hi all,
-
 A couple months ago i started to learn Solana Program Security. Solana web site and github repos effectively teaching how to write Solana Program. Also, public audit reports best way to learn program security. Reading reports and source codes most important way to learn vulnerabilites and fixing methods. 
 
 So, i developed vulnerable solana program with these vulnerabilities;
 
-- [1 - Underflow](#1-Underflow)
-- [2 - Overflow](#2-Overflow)
-- [3 - Missing Signer Check](#3-Missing-Signer-Check)
-- [4 - Missing Ownership](#4-Missing-Ownership)
-<div style="page-break-before: always;"></div>
+1. [Underflow](#1-Underflow)
+2. [Overflow](#2-Overflow)
+3. [Missing Signer Check](#3-Missing-Signer-Check)
+4. [Missing Ownership](#4-Missing-Ownership)
+
 
 Also, I added test files. You can check source code and tests. Please inform me if you can see mistakes or you can reach me for recommendations.
 
-Source code & tests : https://github.com/thereyahc/Vulnerable-Solana-Program
+Source code & tests : [ Github ]( https://github.com/thereyahc/Vulnerable-Solana-Program)
 
-
+Public reports;
+[ Halborn Audits ](https://www.halborn.com/audits)
+[ Neodyme Reports ](https://neodyme.io/en/reports/)
 
 
 # 1 - Underflow
